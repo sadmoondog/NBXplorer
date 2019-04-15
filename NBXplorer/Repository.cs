@@ -339,11 +339,14 @@ namespace NBXplorer
 		{
 			return _TxContext.DoAsync(tx =>
 			{
+				try{
 				if (locator == null)
 					tx.RemoveKey($"{_Suffix}IndexProgress", "");
 				else
 					tx.Insert($"{_Suffix}IndexProgress", "", locator.ToBytes());
 				tx.Commit();
+				}
+				catch{}
 			});
 		}
 
